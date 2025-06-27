@@ -1,0 +1,39 @@
+:root {
+	--nc-font-sans: 'Fira Code', monospace;
+	--nc-font-mono: 'Fira Code', monospace;
+	--nc-tx-1: #FFFFFF;
+	--nc-tx-2: #EEEEEE;
+	--nc-bg-1: #000000;
+	--nc-bg-2: #47D794;
+	--nc-bg-3: #005800;
+	--nc-lk-1: #00FF00;
+	--nc-lk-2: #00c200;
+	--nc-lk-tx: #000000;
+	--nc-ac-1: #00FF00;
+	--nc-ac-tx: #000000;
+}
+
+#title {
+  color:black;
+  font-family: 'VT323', monospace;
+  font-size: 36px;
+}
+
+#title a {
+  color:black;
+}
+
+.example {
+ float: left;
+}
+
+.window {
+  font-family: 'VT323', monospace;
+  color:#47D794;
+  border-style: double;
+  border-color: #47D794;
+  width: 280px;
+  height: 200px;
+  margin: 10px;
+  float:left;
+}

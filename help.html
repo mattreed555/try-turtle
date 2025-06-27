@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Try Turtle: Help</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=VT323"/>
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/fira-code.css"/>
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+    <link rel="stylesheet" href="./text-style.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.glitch.com/ad1adb32-fb4d-4544-a884-d567cb3ab7e7%2Ffavicon-32x32.png?v=1612069834743">
+  </head>
+  <body>
+    <header>
+      <h1 id="title"><a href="./">Try Turtle</a>: Help</h1>
+    </header>  
+    <h1>
+      Overview
+    </h1>
+    <p>
+      The language used for turtle graphics is a simplified <a href="./turtle-graphics-notation.html">Turtle Graphics Notation</a>.  
+    </p>
+    <p>
+      Use a turtle to draw on a 280 x 200 pixel canvas.  You can save your drawings using the "Download your drawing" button.
+    </p>
+    <h2>
+      Commands
+    </h2>
+    <dl>
+      <dt>CLEARSCREEN</dt>
+      <dd>Erases the drawing (like shaking your etch-a-sketch).</dd>
+      <dt>PENUP</dt>
+      <dd>Lift up the pen so that when the turtle moves, it won't draw a line.</dd>
+      <dt>PENDOWN</dt>
+      <dd>Set the pen down so that when the turtle moves, it willl draw a line. This is the default.</dd>
+      <dt>SHOWTURTLE</dt>
+      <dd>Shows the current turtle position as a charming little triangle. This is the default.</dd>
+      <dt>HIDETURTLE</dt>
+      <dd>Hides the charming little triangle so you can see your picture in all it's artistic glory.</dd>
+      <dt>FORWARD <i>[distance]</i></dt>
+      <dd>Moves the turtle forward by the <i>[distance]</i> specified.</dd>
+      <dt>BACK <i>[distance]</i></dt>
+      <dd>Moves the turtle backward by the <i>[distance]</i> specified.</dd>
+      <dt>LEFT <i>[degrees]</i></dt>
+      <dd>Moves the turtle left by the <i>[degrees]</i> specified.</dd>
+      <dt>RIGHT <i>[degrees]</i></dt>
+      <dd>Moves the turtle right by the <i>[degrees]</i> specified.</dd>
+      <dt>REPEAT [number]</dt>
+      <dd>Repeat the following commands the <i>[number]</i> of times specified.</dd>
+      <dt>TO <i>[argument list]</i></dt>
+      <dd>Currently this doesn't work, but one day it will allow you to write new commands.</dd>
+    </dl>
+    <h2>
+      Example programs
+    </h2>
+    <div class="example">
+      <div>
+      <b>
+        Triangle
+      </b>
+        <p>
+          Use the REPEAT command to draw a triangle.
+        </p>
+      </div>
+      <div class="window">
+        &nbsp;REPEAT 3<br>
+        &nbsp;&ensp;FORWARD 50<br>
+        &nbsp;&ensp;LEFT 120<br>
+      </div>
+      <div class="window"> 
+      <img src="https://cdn.glitch.com/ad1adb32-fb4d-4544-a884-d567cb3ab7e7%2Ftriangle.png?v=1623985335308" width="280" height="200" alt="a triangle">      
+      </div>
+    </div>
+  </body>
+</html>
