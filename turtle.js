@@ -412,6 +412,7 @@
       if (parsedStructure.args.length < 1) {
         return createError("Missing Arguments.");
       } else {
+        console.log("Registering procedure:", parsedStructure.args[0], "with childCommands:", parsedStructure.childCommands);
         bindings[parsedStructure.args[0]] = function(
           innerStructure,
           innerLiterals
@@ -426,6 +427,7 @@
           }
           return block(parsedStructure.childCommands, 1, innerLiterals);
         };
+        console.log("Current bindings after registering:", Object.keys(bindings));
         return function() {
           return done();
         };
@@ -480,6 +482,8 @@
           literals
         );
       } else {
+        console.log("Command not found in bindings. Available commands:", Object.keys(bindings));
+        console.log("Looking for command:", parsedStructure.commandName);
         return createError("Unknown command: " + parsedStructure.commandName);
       }
     }
