@@ -39,6 +39,7 @@ a {
 }
 
 #download {
+  display: inline-block;
   border-width: 1px;
   border-style: solid;
   border-color: #47D794;
@@ -55,7 +56,6 @@ a {
 }
 
 #download:hover {
-  display: inline-block;
   color: black;
   background-color:#47D794;
 }
