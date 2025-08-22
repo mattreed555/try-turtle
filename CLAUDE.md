@@ -64,7 +64,37 @@ This is a static website with no build process required. To work with the projec
 
 ## Recent Fixes
 
+- Fixed procedure execution system (TO/TRI commands now work correctly)
+- Fixed REPEAT block nesting in parser to properly group child commands
 - Fixed screen wrapping logic with proper boundary detection (canvas coordinates are 0-based)
+- Fixed download button clickable area with proper z-index layering
 - Unified styling across all documentation pages to match main app aesthetics
 - Added division by zero protection for cardinal direction movements
 - Corrected spelling and grammar issues in documentation
+
+## Future TODOs
+
+### Parser Enhancements
+- [ ] Add support for indentation-based nested REPEAT blocks (to enable flower pattern and complex nested structures)
+- [ ] Implement keyboard shortcut or command for changing indentation levels
+- [ ] Add support for nested procedure definitions within procedures
+
+### Command Extensions
+- [ ] Add color commands (SETCOLOR, PENCOLOR)
+- [ ] Add pen width commands (PENWIDTH)
+- [ ] Add geometric shapes (CIRCLE, ARC, POLYGON)
+- [ ] Add conditional commands (IF, WHILE)
+- [ ] Add variable operations beyond basic assignment
+
+### User Experience
+- [ ] Add command autocomplete in console
+- [ ] Add syntax highlighting for multi-line procedure definitions
+- [ ] Add save/load functionality for turtle programs
+- [ ] Add animation speed control
+- [ ] Add step-by-step execution mode for debugging
+
+### Technical Improvements
+- [ ] Optimize canvas performance for complex drawings
+- [ ] Add proper error recovery for partially entered commands
+- [ ] Improve memory management for large programs
+- [ ] Add comprehensive test suite
