@@ -100,15 +100,6 @@ REPEAT 36
   LEFT 91
 ```
 
-### Flower Pattern
-```logo
-REPEAT 8
-  REPEAT 6
-    FORWARD 40
-    LEFT 60
-  LEFT 45
-```
-
 ## 🤝 Contributing
 
 Contributions are welcome! This project maintains a minimalist coding style inspired by "JavaScript: The Good Parts."
