@@ -366,6 +366,7 @@
     }
 
     function block(childCommands, blockRepetitions, literals) {
+      console.log("block() called with childCommands:", childCommands, "repetitions:", blockRepetitions);
       let times = blockRepetitions,
         blockLineLength = childCommands.length,
         blockLine = 0,
@@ -415,6 +416,7 @@
           innerStructure,
           innerLiterals
         ) {
+          console.log("Calling procedure:", parsedStructure.args[0], "with childCommands:", parsedStructure.childCommands);
           if (innerStructure.args.length !== parsedStructure.args.length - 1) {
             return createError("Missing Arguments.");
           }
@@ -464,6 +466,14 @@
     }
 
     function createExecuter(parsedStructure, literals) {
+      if (!parsedStructure) {
+        console.error("createExecuter called with undefined parsedStructure");
+        return createError("Invalid command structure");
+      }
+      if (!parsedStructure.commandName) {
+        console.error("createExecuter called with parsedStructure missing commandName:", parsedStructure);
+        return createError("Missing command name");
+      }
       if (bindings.hasOwnProperty(parsedStructure.commandName)) {
         return bindings[parsedStructure.commandName](
           evalLiterals(parsedStructure, literals),
