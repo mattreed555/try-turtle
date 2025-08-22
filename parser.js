@@ -211,18 +211,24 @@ console.log("parsed:");
       let newChildCommands = [],
         isBlock = false,
         newChildCommand = "";
+      console.log("Processing childCommands:", childCommands);
       for (let i = 0; i < childCommands.length; i += 1) {
         newChildCommand += childCommands[i] + "\n";
+        console.log(`Line ${i}: "${childCommands[i]}", isBlock: ${isBlock}, newChildCommand so far: "${newChildCommand.trim()}"`);
 
         if (isBlockCommand(childCommands[i])) {
           isBlock = true;
+          console.log(`Found block command, setting isBlock = true`);
         }
 
         if (i === childCommands.length - 1 || !isBlock) {
             newChildCommands.push(newChildCommand);
+            console.log(`Pushing command group: "${newChildCommand.trim()}"`);
           newChildCommand = "";
+          isBlock = false; // Reset block flag
         }
       }
+      console.log("Final newChildCommands:", newChildCommands);
       childCommands = newChildCommands.map(childCommand => tgnParse(childCommand));
     } else {
       childCommands = [];
