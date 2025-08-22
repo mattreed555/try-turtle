@@ -366,7 +366,6 @@
     }
 
     function block(childCommands, blockRepetitions, literals) {
-      console.log("block() called with childCommands:", childCommands, "repetitions:", blockRepetitions);
       let times = blockRepetitions,
         blockLineLength = childCommands.length,
         blockLine = 0,
@@ -412,12 +411,10 @@
       if (parsedStructure.args.length < 1) {
         return createError("Missing Arguments.");
       } else {
-        console.log("Registering procedure:", parsedStructure.args[0], "with childCommands:", parsedStructure.childCommands);
         bindings[parsedStructure.args[0].toUpperCase()] = function(
           innerStructure,
           innerLiterals
         ) {
-          console.log("Calling procedure:", parsedStructure.args[0], "with childCommands:", parsedStructure.childCommands);
           if (innerStructure.args.length !== parsedStructure.args.length - 1) {
             return createError("Missing Arguments.");
           }
@@ -427,7 +424,6 @@
           }
           return block(parsedStructure.childCommands, 1, innerLiterals);
         };
-        console.log("Current bindings after registering:", Object.keys(bindings));
         return function() {
           return done();
         };
@@ -469,11 +465,9 @@
 
     function createExecuter(parsedStructure, literals) {
       if (!parsedStructure) {
-        console.error("createExecuter called with undefined parsedStructure");
         return createError("Invalid command structure");
       }
       if (!parsedStructure.commandName) {
-        console.error("createExecuter called with parsedStructure missing commandName:", parsedStructure);
         return createError("Missing command name");
       }
       if (bindings.hasOwnProperty(parsedStructure.commandName)) {
@@ -482,8 +476,6 @@
           literals
         );
       } else {
-        console.log("Command not found in bindings. Available commands:", Object.keys(bindings));
-        console.log("Looking for command:", parsedStructure.commandName);
         return createError("Unknown command: " + parsedStructure.commandName);
       }
     }
