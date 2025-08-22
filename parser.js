@@ -204,32 +204,11 @@ var tgnParse = (function(textCommand, variables) {
   
   const isBlockCommand = name =>
         name && name.trim().indexOf("TO") === 0 || name && name.trim().indexOf("REPEAT") === 0;
-console.log("parsed:");
-  console.log(result);
 
   if (childCommands.length > 0) {
-      let newChildCommands = [],
-        isBlock = false,
-        newChildCommand = "";
-      console.log("Processing childCommands:", childCommands);
-      for (let i = 0; i < childCommands.length; i += 1) {
-        newChildCommand += childCommands[i] + "\n";
-        console.log(`Line ${i}: "${childCommands[i]}", isBlock: ${isBlock}, newChildCommand so far: "${newChildCommand.trim()}"`);
-
-        if (isBlockCommand(childCommands[i])) {
-          isBlock = true;
-          console.log(`Found block command, setting isBlock = true`);
-        }
-
-        if (i === childCommands.length - 1 || !isBlock) {
-            newChildCommands.push(newChildCommand);
-            console.log(`Pushing command group: "${newChildCommand.trim()}"`);
-          newChildCommand = "";
-          isBlock = false; // Reset block flag
-        }
-      }
-      console.log("Final newChildCommands:", newChildCommands);
-      childCommands = newChildCommands.map(childCommand => tgnParse(childCommand));
+      // For turtle graphics, each line should be treated as a separate command
+      // The REPEAT command will handle grouping its own child commands internally
+      childCommands = childCommands.map(childCommand => tgnParse(childCommand.trim()));
     } else {
       childCommands = [];
     }

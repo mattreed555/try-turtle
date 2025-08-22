@@ -517,11 +517,7 @@
         cancelFlag = true;
       },
       commandHandle: function(line, report) {
-        console.log("commandHandle called with line:", JSON.stringify(line));
-        console.log("continuedPrompt state:", controller.continuedPrompt);
         let parsedLine = tgnParse(line);
-        console.log("from parser:");
-        console.log(parsedLine);
         if (
           (controller.continuedPrompt === false ||
             controller.continuedPrompt === undefined) &&
