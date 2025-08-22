@@ -208,14 +208,31 @@
         offset = 0;
       }
       let distanceLeft = distance;
-      while (distanceLeft > 0) {
+      let iterations = 0;
+      const maxIterations = 1000; // Prevent infinite loops
+      
+      console.log(`Forward ${distance}, starting at (${point.x}, ${point.y}), rotation ${rotation + (offset || 0)}`);
+      
+      while (distanceLeft > 0.1 && iterations < maxIterations) {
         const nextStep = getNextPoint(point, rotation + (offset), distanceLeft, true);
+        console.log(`Iteration ${iterations}: distanceLeft=${distanceLeft.toFixed(2)}, traveled=${nextStep.distanceTraveled.toFixed(2)}, wrap=${nextStep.wrap}, drawTo=(${nextStep.drawTo.x.toFixed(1)}, ${nextStep.drawTo.y.toFixed(1)})`);
+        
         drawTo(nextStep.drawTo);
         if (nextStep.wrap) {
           point = nextStep.goTo;
+          console.log(`Wrapped to (${point.x.toFixed(1)}, ${point.y.toFixed(1)})`);
         }
         distanceLeft = distanceLeft - nextStep.distanceTraveled;
-      }      
+        iterations++;
+        
+        // Safety check for infinite loops
+        if (nextStep.distanceTraveled <= 0) {
+          console.warn("Forward movement stuck, breaking loop");
+          break;
+        }
+      }
+      
+      console.log(`Forward complete: final position (${point.x.toFixed(1)}, ${point.y.toFixed(1)}), iterations: ${iterations}`);
       drawTurtle(point);
     }
 
