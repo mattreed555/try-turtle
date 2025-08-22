@@ -413,7 +413,7 @@
         return createError("Missing Arguments.");
       } else {
         console.log("Registering procedure:", parsedStructure.args[0], "with childCommands:", parsedStructure.childCommands);
-        bindings[parsedStructure.args[0]] = function(
+        bindings[parsedStructure.args[0].toUpperCase()] = function(
           innerStructure,
           innerLiterals
         ) {
