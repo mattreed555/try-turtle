@@ -40,10 +40,12 @@ a {
 
 #download {
   display: inline-block;
+  position: relative;
+  z-index: 10;
   border-width: 1px;
   border-style: solid;
   border-color: #47D794;
-  float:right;
+  float: right;
   font-size: 16px;
   margin-top: 6px;
   padding: 3px;
@@ -53,6 +55,12 @@ a {
   -moz-transition:.5s;
   -webkit-transition:.5s;
   transition:.5s;
+}
+
+#turtle {
+  display: block;
+  position: relative;
+  z-index: 1;
 }
 
 #download:hover {
