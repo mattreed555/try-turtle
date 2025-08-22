@@ -408,7 +408,7 @@
     }
 
     function toBlock(parsedStructure) {
-      if (parsedStructure.args.length < 1) {
+      if (parsedStructure.args.length < 1 || !parsedStructure.args[0]) {
         return createError("Missing Arguments.");
       } else {
         bindings[parsedStructure.args[0].toUpperCase()] = function(
