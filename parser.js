@@ -206,12 +206,46 @@ var tgnParse = (function(textCommand, variables) {
         name && name.trim().indexOf("TO") === 0 || name && name.trim().indexOf("REPEAT") === 0;
 
   if (childCommands.length > 0) {
-      // For turtle graphics, each line should be treated as a separate command
-      // The REPEAT command will handle grouping its own child commands internally
-      childCommands = childCommands.map(childCommand => tgnParse(childCommand.trim()));
-    } else {
-      childCommands = [];
+    // Process child commands and handle REPEAT block nesting
+    let processedChildren = [];
+    let i = 0;
+    
+    while (i < childCommands.length) {
+      let childCommand = childCommands[i].trim();
+      let parsedChild = tgnParse(childCommand);
+      
+      // If this is a REPEAT command, collect following commands as its children
+      if (parsedChild.commandName === "REPEAT") {
+        let repeatChildren = [];
+        i++; // Move to next command
+        
+        // Collect commands until we hit another block command or end
+        while (i < childCommands.length) {
+          let nextCommand = childCommands[i].trim();
+          let parsedNext = tgnParse(nextCommand);
+          
+          // Stop if we hit another block command
+          if (parsedNext.isBlockCommand) {
+            break;
+          }
+          
+          repeatChildren.push(parsedNext);
+          i++;
+        }
+        
+        // Assign the collected children to the REPEAT command
+        parsedChild.childCommands = repeatChildren;
+        i--; // Back up one since the outer loop will increment
+      }
+      
+      processedChildren.push(parsedChild);
+      i++;
     }
+    
+    childCommands = processedChildren;
+  } else {
+    childCommands = [];
+  }
   
   return {
     commandName: result.name,
