@@ -376,17 +376,23 @@
         if (times > 0) {
           if (!blockLineInitialized) {
             blockLineInitialized = true;
+            console.log("block: initializing with blockLine:", blockLine, "command:", childCommands[blockLine]);
             executer = createExecuter(childCommands[blockLine], literals);
           }
           let result = executer();
           if (result.kind === "done") {
             blockLine = blockLine + 1;
+            console.log("block: command done, advancing to blockLine:", blockLine, "out of", blockLineLength);
             if (blockLine > blockLineLength - 1) {
               blockLine = 0;
               times = times - 1;
+              console.log("block: resetting to blockLine 0, times remaining:", times);
             }
-            executer = createExecuter(childCommands[blockLine], literals);
-            result = executer();
+            if (times > 0) {
+              console.log("block: creating executer for blockLine:", blockLine, "command:", childCommands[blockLine]);
+              executer = createExecuter(childCommands[blockLine], literals);
+              result = executer();
+            }
           }
           return result;
         } else {
