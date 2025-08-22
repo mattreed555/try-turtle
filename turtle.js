@@ -135,45 +135,57 @@
       let hadToWrap = false;
 
       if (doWrap) {
-        const maxX = canvasPen.width,
+        const maxX = canvasPen.width - 1,
               minX = 0,
-              maxY = canvasPen.height,
+              maxY = canvasPen.height - 1,
               minY = 0;
         if  (drawToPoint.x > maxX) {
-          stepDistance = Math.abs(maxX - point.x) / Math.cos(radians(rotation));
-          drawToPoint = transform(point, rotation, stepDistance);
-          newPoint = {
-            y: drawToPoint.y,
-            x: minX
-          };
-          hadToWrap = true;
+          const cosRotation = Math.cos(radians(rotation));
+          if (Math.abs(cosRotation) > 0.001) {
+            stepDistance = Math.abs(maxX - point.x) / Math.abs(cosRotation);
+            drawToPoint = transform(point, rotation, stepDistance);
+            newPoint = {
+              y: drawToPoint.y,
+              x: minX
+            };
+            hadToWrap = true;
+          }
         }
         else if (drawToPoint.x < minX) {
-          stepDistance = Math.abs(minX - point.x) / Math.cos(radians(rotation));
-          drawToPoint = transform(point, rotation, stepDistance);
-          newPoint = {
-            y: drawToPoint.y,
-            x: maxX
-          };
-          hadToWrap = true;
+          const cosRotation = Math.cos(radians(rotation));
+          if (Math.abs(cosRotation) > 0.001) {
+            stepDistance = Math.abs(minX - point.x) / Math.abs(cosRotation);
+            drawToPoint = transform(point, rotation, stepDistance);
+            newPoint = {
+              y: drawToPoint.y,
+              x: maxX
+            };
+            hadToWrap = true;
+          }
         }
         else if (drawToPoint.y > maxY) {
-          stepDistance = Math.abs(maxY - point.y) / Math.sin(radians(rotation));
-          drawToPoint = transform(point, rotation, stepDistance);
-          newPoint = {
-            x: drawToPoint.x,
-            y: minY
-          };
-          hadToWrap = true;
+          const sinRotation = Math.sin(radians(rotation));
+          if (Math.abs(sinRotation) > 0.001) {
+            stepDistance = Math.abs(maxY - point.y) / Math.abs(sinRotation);
+            drawToPoint = transform(point, rotation, stepDistance);
+            newPoint = {
+              x: drawToPoint.x,
+              y: minY
+            };
+            hadToWrap = true;
+          }
         }
         else if (drawToPoint.y < minY) {
-          stepDistance = Math.abs(minY - point.y) / Math.sin(radians(rotation));
-          drawToPoint = transform(point, rotation, stepDistance);
-          newPoint = {
-            x: drawToPoint.x,
-            y: maxY
-          };
-          hadToWrap = true;
+          const sinRotation = Math.sin(radians(rotation));
+          if (Math.abs(sinRotation) > 0.001) {
+            stepDistance = Math.abs(minY - point.y) / Math.abs(sinRotation);
+            drawToPoint = transform(point, rotation, stepDistance);
+            newPoint = {
+              x: drawToPoint.x,
+              y: maxY
+            };
+            hadToWrap = true;
+          }
         }
         
       }
