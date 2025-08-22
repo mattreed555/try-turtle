@@ -189,10 +189,21 @@ var tgnParse = (function(textCommand, variables) {
       .toUpperCase()
       .trim()
       .split(/\n/);
- const
-    result = myparser.parse(command, options),
-    isBlockCommand = name =>
-        name.trim().indexOf("TO") === 0 || name.trim().indexOf("REPEAT") === 0;
+  let result;
+  try {
+    result = myparser.parse(command, options);
+  } catch (e) {
+    // Return error object for invalid commands
+    return {
+      commandName: "ERROR",
+      args: ["Unknown command: " + command],
+      childCommands: [],
+      isBlockCommand: false
+    };
+  }
+  
+  const isBlockCommand = name =>
+        name && name.trim().indexOf("TO") === 0 || name && name.trim().indexOf("REPEAT") === 0;
 console.log("parsed:");
   console.log(result);
 

@@ -416,7 +416,10 @@
       LEFT: createIntArg("left", "angle"),
       RIGHT: createIntArg("right", "angle"),
       REPEAT: repeatBlock,
-      TO: toBlock
+      TO: toBlock,
+      ERROR: function(parsedStructure) {
+        return createError(parsedStructure.args[0] || "Unknown error");
+      }
     };
 
     function evalLiterals(parsedStructure, literals) {
