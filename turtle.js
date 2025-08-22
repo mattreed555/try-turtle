@@ -411,10 +411,12 @@
       if (parsedStructure.args.length < 1 || !parsedStructure.args[0]) {
         return createError("Missing Arguments.");
       } else {
+        console.log("Registering procedure:", parsedStructure.args[0], "with childCommands:", parsedStructure.childCommands);
         bindings[parsedStructure.args[0].toUpperCase()] = function(
           innerStructure,
           innerLiterals
         ) {
+          console.log("Executing procedure:", parsedStructure.args[0], "childCommands:", parsedStructure.childCommands);
           if (innerStructure.args.length !== parsedStructure.args.length - 1) {
             return createError("Missing Arguments.");
           }
@@ -424,6 +426,7 @@
           }
           return block(parsedStructure.childCommands, 1, innerLiterals);
         };
+        console.log("Registered bindings:", Object.keys(bindings));
         return function() {
           return done();
         };
@@ -465,17 +468,22 @@
 
     function createExecuter(parsedStructure, literals) {
       if (!parsedStructure) {
+        console.error("createExecuter: parsedStructure is null/undefined");
         return createError("Invalid command structure");
       }
       if (!parsedStructure.commandName) {
+        console.error("createExecuter: missing commandName:", parsedStructure);
         return createError("Missing command name");
       }
+      console.log("createExecuter: looking for command:", parsedStructure.commandName, "in bindings:", Object.keys(bindings));
       if (bindings.hasOwnProperty(parsedStructure.commandName)) {
+        console.log("createExecuter: found command, executing");
         return bindings[parsedStructure.commandName](
           evalLiterals(parsedStructure, literals),
           literals
         );
       } else {
+        console.error("createExecuter: command not found:", parsedStructure.commandName);
         return createError("Unknown command: " + parsedStructure.commandName);
       }
     }
