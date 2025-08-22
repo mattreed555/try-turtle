@@ -215,7 +215,7 @@ var tgnParse = (function(textCommand, variables) {
   
   return {
     commandName: result.name,
-    args: result.arguments == undefined ? [ result.val] : result.arguments,
+    args: result.arguments || (result.val !== undefined ? [result.val] : (result.procname !== undefined ? [result.procname, ...result.parameters] : [])),
     childCommands: childCommands,
     isBlockCommand: isBlockCommand(result.name)
   };
