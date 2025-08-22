@@ -106,7 +106,7 @@ IDENTIFIER
 PROC
   = char1:LETTER chars:(LETTER / DIGIT)* _  {
     const name = char1 + chars.join("");
-    return options.procs[name];
+    return options.procs[name] || name;
   }
 
 PROC_DEF_   = "TO" _
@@ -400,7 +400,7 @@ var myparser = /*
           },
         peg$c17 = function(char1, chars) {
             const name = char1 + chars.join("");
-            return options.procs[name];
+            return options.procs[name] || name;
           },
         peg$c18 = "TO",
         peg$c19 = peg$literalExpectation("TO", false),
