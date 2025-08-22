@@ -100,3 +100,74 @@ div#console span.jquery-console-prompt-label {
         background: #282828;
     }
 }
+
+/* Content page styles */
+.content-page #container {
+  max-width: 600px;
+  padding: 20px;
+}
+
+#content {
+  text-align: left;
+  max-width: 600px;
+  margin: 20px auto;
+  line-height: 1.6;
+}
+
+#header h1 {
+  font-family: 'VT323', monospace;
+  color: #47D794;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#header h1 a {
+  font-size: 24px;
+  color: #47D794;
+}
+
+#content h1, #content h2, #content h3 {
+  font-family: 'VT323', monospace;
+  color: #47D794;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+#content p {
+  font-family: 'VT323', monospace;
+  color: #47D794;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+#content dt {
+  font-family: 'VT323', monospace;
+  color: #47D794;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+#content dd {
+  font-family: 'VT323', monospace;
+  color: #47D794;
+  font-size: 16px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+#content dl {
+  margin-bottom: 20px;
+}
+
+.example {
+  margin: 20px 0;
+  clear: both;
+}
+
+.example b {
+  font-family: 'VT323', monospace;
+  color: #47D794;
+  font-size: 18px;
+}
