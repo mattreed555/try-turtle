@@ -18,16 +18,16 @@
       actualDrawing = ctx.getImageData(0, 0, canvas.width, canvas.height);
     }
 
-    function drawCart(x1, y1, x2, y2) {
+    function drawLine(x1, y1, x2, y2) {
       ctx.beginPath();
       ctx.moveTo(x1, y1);
       ctx.lineTo(x2, y2);
       ctx.stroke();
     }
 
-    function drawCartPermanent(x1, y1, x2, y2) {
+    function drawLinePermanent(x1, y1, x2, y2) {
       restoreBackground();
-      drawCart(x1, y1, x2, y2);
+      drawLine(x1, y1, x2, y2);
       saveBackground();
     }
 
@@ -46,8 +46,8 @@
     return Object.freeze({
       width: width,
       height: height,
-      drawCart: drawCart,
-      drawCartPermanent: drawCartPermanent,
+      drawLine: drawLine,
+      drawLinePermanent: drawLinePermanent,
       restoreBackground: restoreBackground,
       clear: clear,
       getDataURL
@@ -89,18 +89,22 @@
     function drawTurtle(point) {
       canvasPen.restoreBackground();
       if (is_shown) {
-        const pointA = transform(point, rotation, 5),
-          pointB = transform(pointA, addAngle(rotation, -160), 11),
-          pointC = transform(pointA, addAngle(rotation, 160), 11);
-        canvasPen.drawCart(pointA.x, pointA.y, pointB.x, pointB.y);
-        canvasPen.drawCart(pointB.x, pointB.y, pointC.x, pointC.y);
-        canvasPen.drawCart(pointC.x, pointC.y, pointA.x, pointA.y);
+        const TURTLE_SIZE = 5;
+        const TURTLE_WING_SIZE = 11;
+        const TURTLE_WING_ANGLE = 160;
+        
+        const pointA = transform(point, rotation, TURTLE_SIZE),
+          pointB = transform(pointA, addAngle(rotation, -TURTLE_WING_ANGLE), TURTLE_WING_SIZE),
+          pointC = transform(pointA, addAngle(rotation, TURTLE_WING_ANGLE), TURTLE_WING_SIZE);
+        canvasPen.drawLine(pointA.x, pointA.y, pointB.x, pointB.y);
+        canvasPen.drawLine(pointB.x, pointB.y, pointC.x, pointC.y);
+        canvasPen.drawLine(pointC.x, pointC.y, pointA.x, pointA.y);
       }
     }
 
     function drawTo(newPoint) {
       if (!is_up) {
-        canvasPen.drawCartPermanent(point.x, point.y, newPoint.x, newPoint.y);
+        canvasPen.drawLinePermanent(point.x, point.y, newPoint.x, newPoint.y);
       }
       point = newPoint;
     }
@@ -206,7 +210,6 @@
       let distanceLeft = distance;
       while (distanceLeft > 0) {
         const nextStep = getNextPoint(point, rotation + (offset), distanceLeft, true);
-        console.log(nextStep);
         drawTo(nextStep.drawTo);
         if (nextStep.wrap) {
           point = nextStep.goTo;
@@ -230,7 +233,7 @@
     }
 
     drawTurtle(point);
-   // replace with dictionary
+    
     return function(command) {
       switch (command.kind) {
         case "clearScreen":
@@ -500,7 +503,7 @@
 
         if (controller.continuedPrompt === true) {
           const lines = line.split(/\n/);
-          if (lines[lines.length - 1].trim().length != 0) {
+          if (lines[lines.length - 1].trim().length !== 0) {
             return;
           }
 
