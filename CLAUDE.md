@@ -80,18 +80,12 @@ This is a static website with no build process required. To work with the projec
 - [ ] Add support for nested procedure definitions within procedures
 
 ### Command Extensions
-- [ ] Add color commands (SETCOLOR, PENCOLOR)
-- [ ] Add pen width commands (PENWIDTH)
-- [ ] Add geometric shapes (CIRCLE, ARC, POLYGON)
-- [ ] Add conditional commands (IF, WHILE)
-- [ ] Add variable operations beyond basic assignment
+- [ ] Add support for all commands referenced in Abelson and diSessa's Turtle Geometry
 
 ### User Experience
-- [ ] Add command autocomplete in console
-- [ ] Add syntax highlighting for multi-line procedure definitions
-- [ ] Add save/load functionality for turtle programs
+- [ ] Ability to include commands in a link to share what you've built
 - [ ] Add animation speed control
-- [ ] Add step-by-step execution mode for debugging
+- [ ] Add save/load functionality for turtle programs
 
 ### Technical Improvements
 - [ ] Optimize canvas performance for complex drawings
